@@ -1,6 +1,5 @@
 should = require 'should'
 stream = require '../src/stream'
-logger = require('tracer').console format: "{{stack}} {{message}}"
 
 describe 'stream', ->
     

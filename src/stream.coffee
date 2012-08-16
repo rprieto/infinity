@@ -1,4 +1,3 @@
-logger = require('tracer').console format: "{{stack}} {{message}}"
 
 stream = (h, t) ->
     
@@ -26,7 +25,7 @@ stream = (h, t) ->
             t().filter(test)
 
 range = (start) -> 
-    stream (-> start),( -> range(start+1))
+    stream (-> start), (-> range start+1)
 
 exports.range = range
 exports.create = stream
