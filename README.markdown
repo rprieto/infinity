@@ -6,15 +6,18 @@ A library for lazy evaluation in Node.js, with support for infinite sequences.
 
     stream = require 'stream'
 
-    stream.range 9                       # naturals from 9 to infinity
+    stream.range 9                        # naturals from 9 to infinity
+    stream.cycle [1, 2, 3]                # repeats 1, 2, 3 forever
     stream.create (-> 2), ((i) -> i*2)    # all powers of 2
 
 
 ## Stream operations
 
     myStream.filter (i) -> i%2 == 0       # a new stream with even numbers only
-    myStream.take(5)                      # get the first 5 elements (javascript array)
+    myStream.map (i) -> i*2               # doubles every number in the stream
+    myStream.take 5                       # get the first 5 elements (javascript array)
 
+    stream.zip s1, s2, s3                 # creates a new steam pairing all streams 1 to 1
 
 ## Try the sample code
 
