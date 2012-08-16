@@ -16,4 +16,4 @@ describe 'stream', ->
     it 'filters', ->
         isEven = (i) -> i%2 == 0
         stream.range(1).filter(isEven).take(3).should.eql [2, 4, 6]
-      
+        stream.range(9).filter(isEven).take(2).should.eql [10, 12]

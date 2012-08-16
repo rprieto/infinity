@@ -7,7 +7,9 @@ stream = (h, t) ->
             h()
         else
             t().first()
-            
+      
+    tail: -> t()
+         
     first: ->
         @take(1)[0]
         
@@ -27,4 +29,4 @@ range = (start) ->
     stream (-> start),( -> range(start+1))
 
 exports.range = range
-
+exports.create = stream
