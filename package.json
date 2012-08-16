@@ -11,7 +11,8 @@
 	},
 	"dependencies": {
 		"mocha": "*",
-		"should": "*"
+		"should": "*",
+		"coffee-script": "*"
 	},
 	"main": "src/main.coffee"
 }
