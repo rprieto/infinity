@@ -10,6 +10,7 @@ describe 'fizzbuzz', ->
 describe 'prime numbers', ->
     it 'finds them', ->
         sieve(stream.range(2)).take(5).should.eql [2, 3, 5, 7, 11]
+        sieve(stream.range(3)).take(5).should.eql [2, 3, 5, 7, 11]
 
 fizzbuzz = (max) ->
 	naturals = stream.range(1)
