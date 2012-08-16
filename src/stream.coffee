@@ -23,6 +23,7 @@ create = (h, t) ->
             create h, -> t().filter(test)
         else
             t().filter(test)
+            
 
 range = (start) -> 
     create (-> start), (-> range start+1)
@@ -30,6 +31,12 @@ range = (start) ->
 fromArray = (arr) ->
     create (-> arr[0]), (-> fromArray arr.slice 1)
 
+zip = (streams...) ->
+    heads = streams.reduce ((acc, item) -> acc.concat(item.head())), []
+    tails = streams.reduce ((acc, item) -> acc.concat(item.tail())), []
+    create (-> heads), (-> zip.apply null, tails)
+        
 exports.range = range
 exports.fromArray = fromArray
 exports.create = create
+exports.zip = zip

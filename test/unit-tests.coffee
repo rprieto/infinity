@@ -19,3 +19,7 @@ describe 'stream', ->
         isEven = (i) -> i%2 == 0
         stream.range(1).filter(isEven).take(3).should.eql [2, 4, 6]
         stream.range(9).filter(isEven).take(2).should.eql [10, 12]
+
+    it 'can zip streams together', ->
+        stream.zip(stream.range(0), stream.range(10)).take(3).should.eql [[0,10], [1,11], [2,12]]
+
