@@ -1,4 +1,8 @@
 
+#
+# stream factory
+#
+
 create = (h, t) ->
     
     head: ->
@@ -19,11 +23,18 @@ create = (h, t) ->
             [@head()].concat (t().take (max-1))
 
     filter: (test) ->
-        if test(@head())
-            create h, -> t().filter(test)
+        if test @head()
+            create h, -> t().filter test
         else
-            t().filter(test)
-            
+            t().filter test
+        
+    map: (transform) ->
+        create (-> transform h()), (-> t().map transform)
+
+
+#
+# utility methods
+#
 
 range = (start) -> 
     create (-> start), (-> range start+1)
@@ -38,9 +49,14 @@ zip = (streams...) ->
     heads = streams.reduce ((acc, item) -> acc.concat(item.head())), []
     tails = streams.reduce ((acc, item) -> acc.concat(item.tail())), []
     create (-> heads), (-> zip.apply null, tails)
-        
+
+
+#
+# node module exports
+#
+
+exports.create = create
 exports.range = range
 exports.fromArray = fromArray
-exports.create = create
 exports.cycle = cycle
 exports.zip = zip
