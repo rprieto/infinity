@@ -1,8 +1,8 @@
 {
-	"name": "node-lazy-fun",
-	"version": "0.0.0",
-	"private": true,
-	"description": "",
+	"name": "lazy-stream",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Stream library with full lazy-evaluation",
 	"homepage": "",
 	"keywords": [],
 	"author": "",
@@ -11,9 +11,7 @@
 	},
 	"dependencies": {
 		"mocha": "*",
-		"should": "*",
-        "tracer": "*"
+		"should": "*"
 	},
-
-	"main": "main.js"
+	"main": "src/stream.coffee"
 }
