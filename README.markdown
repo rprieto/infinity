@@ -16,4 +16,18 @@ A library for lazy evaluation in Node.js, with support for infinite sequences.
     myStream.take(5)                      # get the first 5 elements (javascript array)
 
 
-## See the unit tests for examples...
+## Try the sample code
+
+    # in the project folder
+    
+    >  npm install
+    >  npm install -g mocha
+    >  mocha
+    
+    # all the tests should pass
+    
+    > coffee src/main.coffee
+
+    # lots of prime numbers!
+
+## See the unit tests for more examples...
