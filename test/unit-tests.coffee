@@ -12,6 +12,9 @@ describe 'stream', ->
         stream.range(1).take(3).should.eql [1, 2, 3]
         stream.range(5).take(3).should.eql [5, 6, 7]
 
+    it 'can create a stream from an array', ->
+        stream.fromArray([2, 5, 7, 9]).take(4).should.eql [2, 5, 7, 9]
+
     it 'can filter a stream with a predicate', ->
         isEven = (i) -> i%2 == 0
         stream.range(1).filter(isEven).take(3).should.eql [2, 4, 6]

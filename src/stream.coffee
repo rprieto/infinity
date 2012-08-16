@@ -1,5 +1,5 @@
 
-stream = (h, t) ->
+create = (h, t) ->
     
     head: ->
         if h != null
@@ -20,12 +20,16 @@ stream = (h, t) ->
 
     filter: (test) ->
         if test(@head())
-            stream h, -> t().filter(test)
+            create h, -> t().filter(test)
         else
             t().filter(test)
 
 range = (start) -> 
-    stream (-> start), (-> range start+1)
+    create (-> start), (-> range start+1)
+
+fromArray = (arr) ->
+    create (-> arr[0]), (-> fromArray arr.slice 1)
 
 exports.range = range
-exports.create = stream
+exports.fromArray = fromArray
+exports.create = create
