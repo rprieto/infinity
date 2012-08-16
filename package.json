@@ -13,5 +13,5 @@
 		"mocha": "*",
 		"should": "*"
 	},
-	"main": "src/stream.coffee"
+	"main": "src/main.coffee"
 }
