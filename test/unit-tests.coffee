@@ -29,4 +29,5 @@ describe 'stream', ->
 
     it 'can create a stream cycling through an array', ->
         stream.cycle([2, 5, 7]).take(8).should.eql [2, 5, 7, 2, 5, 7, 2, 5]
+        stream.cycle(['a', 'b', 'c']).take(4).should.eql ['a', 'b', 'c', 'a']
 
