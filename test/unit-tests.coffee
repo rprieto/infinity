@@ -23,3 +23,6 @@ describe 'stream', ->
     it 'can zip streams together', ->
         stream.zip(stream.range(0), stream.range(10)).take(3).should.eql [[0,10], [1,11], [2,12]]
 
+    it 'can create a stream cycling through an array', ->
+        stream.cycle([2, 5, 7]).take(8).should.eql [2, 5, 7, 2, 5, 7, 2, 5]
+

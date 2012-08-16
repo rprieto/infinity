@@ -31,6 +31,9 @@ range = (start) ->
 fromArray = (arr) ->
     create (-> arr[0]), (-> fromArray arr.slice 1)
 
+cycle = (arr) ->
+    create (-> arr[0]), (-> cycle arr.slice(1).concat([arr[0]]))
+
 zip = (streams...) ->
     heads = streams.reduce ((acc, item) -> acc.concat(item.head())), []
     tails = streams.reduce ((acc, item) -> acc.concat(item.tail())), []
@@ -39,4 +42,5 @@ zip = (streams...) ->
 exports.range = range
 exports.fromArray = fromArray
 exports.create = create
+exports.cycle = cycle
 exports.zip = zip
