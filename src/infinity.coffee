@@ -3,7 +3,7 @@
 # stream factory
 #
 
-create = (h, t) ->
+stream = (h, t) ->
     
     head: -> h()
     
@@ -25,12 +25,12 @@ create = (h, t) ->
 
     filter: (test) ->
         if test h()
-            create h, -> t().filter test
+            stream h, -> t().filter test
         else
             t().filter test
         
     map: (transform) ->
-        create (-> transform h()), (-> t().map transform)
+        stream (-> transform h()), (-> t().map transform)
 
 
 #
@@ -38,31 +38,31 @@ create = (h, t) ->
 #
 
 range = (start) -> 
-    create (-> start), (-> range start+1)
+    stream (-> start), (-> range start+1)
 
 fromArray = (arr) ->
-    create (-> arr[0]), (-> fromArray arr.slice 1)
+    stream (-> arr[0]), (-> fromArray arr.slice 1)
 
 cycle = (arr) ->
-    create (-> arr[0]), (-> cycle arr.slice(1).concat [arr[0]] )
+    stream (-> arr[0]), (-> cycle arr.slice(1).concat [arr[0]] )
 
 zip = (streams...) ->
     heads = streams.reduce ((acc, item) -> acc.concat item.head()), []
     tails = streams.reduce ((acc, item) -> acc.concat item.tail()), []
-    create (-> heads), (-> zip.apply null, tails)
+    stream (-> heads), (-> zip.apply null, tails)
 
-iterate = (fn, seed) ->
+iteration = (fn, seed) ->
     val = fn seed
-    create (-> val), (-> iterate fn, val)
+    stream (-> val), (-> iteration fn, val)
 
 
 #
 # node module exports
 #
 
-exports.create = create
+exports.stream = stream
 exports.range = range
 exports.fromArray = fromArray
 exports.cycle = cycle
 exports.zip = zip
-exports.iterate = iterate
+exports.iteration = iteration

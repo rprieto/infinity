@@ -1,39 +1,63 @@
-# lazy-stream
+# infinity.js
 
-A library for lazy evaluation in Node.js, with support for infinite sequences.
+Infinite sequences for Node.js
+Supports typical array functions and more, all evaluated lazily.
 
-## Creating a stream
+## Creating an infinite stream
 
-    stream = require 'stream'
+    infinite = require 'infinity'
 
-    stream.range 9                        # naturals from 9 to infinity
-    stream.cycle [1, 2, 3]                # repeats 1, 2, 3 forever
-    stream.create (-> 2), ((i) -> i*2)    # all powers of 2
+    infinite.range 9                        # naturals from 9 to infinity
+    infinite.cycle [1, 2, 3]                # repeats 1, 2, 3 forever
+    infinite.iterate 2, (i) -> i*2          # all powers of 2
+    infinite.zip s1, s2, s3                 # a steam pairing all stream arguments 1 to 1
+
+    infinite.fromArray [3, 6, 8]            # this one is actually finite, but still lazy
 
 
 ## Stream operations
+
+    myStream = infinite.range 1
 
     myStream.filter (i) -> i%2 == 0       # a new stream with even numbers only
     myStream.map (i) -> i*2               # a new stream with all elements doubled
     myStream.skip 2                       # a new stream that starts 2 elements further
     myStream.take 5                       # get the first 5 elements as a javascript array
 
-    stream.zip s1, s2, s3                 # a new steam pairing all streams 1 to 1
+    These can of course be chained
 
-## Try the sample code
+## How to use it
 
-    # in the project folder
+In your package.json, add the "infinity" module.
+Then run
+    
+    >  npm install
+
+And you're good to go, either in Javascript or CoffeeScript:
+    
+    infinite = require 'infinity'
+    myStream = infinite.range 1
+    
+    
+## More examples?
+
+Check out the source for some typical algorithms implemented with *infinity*, for ex:
+
+* a prime-number generator
+* an infinite fibonacci sequence
+* a "FizzBuzz" that doesn't use modulo or division
+
+## Curious about the code?
+
+Go to the folder you just cloned
     
     >  npm install
     >  npm install -g mocha
     >  mocha
     
-    # all the tests should pass
+All the tests should pass!
     
     > coffee src/main.coffee
 
-    # lots of prime numbers!
+This should output a lot of prime numbers
 
-## See the unit tests for more examples...
-
-Ex: a functional "FizzBuzz" that doesn't use modulo or division, and a prime-number generator.

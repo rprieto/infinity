@@ -1,6 +1,5 @@
 should = require 'should'
-stream = require '../src/stream'
-
+infinite = require '../src/infinity'
 		
 describe 'prime numbers', ->
     
@@ -48,18 +47,18 @@ describe 'fibonacci', ->
 prime = ->
     sieve = (s) ->
         h = s.head()
-        stream.create (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
-    sieve(stream.range 2)
+        infinite.stream (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
+    sieve(infinite.range 2)
 
 fizzbuzz = ->
-	naturals = stream.range 1
-	threes = stream.cycle ['', '', ' fizz']
-	fives = stream.cycle ['', '', '', '', ' buzz']
+	naturals = infinite.range 1
+	threes = infinite.cycle ['', '', ' fizz']
+	fives = infinite.cycle ['', '', '', '', ' buzz']
 	concat = (arr) -> arr.join ''
-	stream.zip(naturals, threes, fives).map(concat)
+	infinite.zip(naturals, threes, fives).map(concat)
 
 fibo = ->
     calc = (pair) ->
         [a, b] = pair
         [b, a + b]
-    stream.iterate(calc, [0, 1]).map (pair) -> pair[1]
+    infinite.iteration(calc, [0, 1]).map (pair) -> pair[1]

@@ -1,8 +1,8 @@
-stream = require './stream'
+infinite = require './infinity'
 
 sieve = (s) ->
     h = s.head()
-    stream.create (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
+    infinite.create (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
 
-list = sieve(stream.range 2).take 100
+list = sieve(infinite.range 2).take 100
 console.log list

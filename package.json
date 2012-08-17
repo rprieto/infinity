@@ -1,10 +1,10 @@
 {
-	"name": "lazy-stream",
-	"version": "0.0.1",
+	"name": "infinity",
+	"version": "0.0.2",
 	"private": false,
-	"description": "Stream library with full lazy-evaluation",
+	"description": "Infinite sequence library with typical array functions and more, and full lazy-evaluation",
 	"homepage": "",
-	"keywords": [],
+	"keywords": ["sequence", "stream", "functional", "infinite", "filter", "range"],
 	"author": "",
 	"engines" : {
 		"node": ">=0.8.2"
