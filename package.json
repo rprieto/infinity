@@ -10,9 +10,9 @@
 		"node": ">=0.8.2"
 	},
 	"dependencies": {
-		"mocha": "*",
-		"should": "*",
-		"coffee-script": "*"
+		"coffee-script": "1.3.x",
+		"mocha": "1.3.x",
+		"should": "1.1.x"
 	},
 	"main": "src/main.coffee"
 }
