@@ -47,8 +47,8 @@ These can of course be chained.
 
 The basic generators (range, cycle) are not always enough.... but chances are you can express your stream as a *head* and a *tail*.
 
-* The *head* is a function that returns a value.
-* The *tail* is a stream itself
+* The *head* is a function that returns a value
+* The *tail* is a function that returns a stream
 
 For example the following sequence outputs every second item it's given, lazily:
 
