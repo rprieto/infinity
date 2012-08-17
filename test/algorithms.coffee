@@ -7,8 +7,12 @@ describe 'prime numbers', ->
         sieve(stream.range 2).take(5).should.eql [2, 3, 5, 7, 11]
 
 describe 'fizzbuzz', ->
-  it 'can count to twenty', ->
-    fizzbuzz(20).should.eql ['1', '2', '3 fizz', '4', '5 buzz', '6 fizz', '7', '8', '9 fizz', '10 buzz', '11', '12 fizz', '13', '14', '15 fizz buzz', '16', '17', '18 fizz', '19', '20 buzz']
+    it 'can count to twenty', ->
+        fizzbuzz(20).should.eql ['1', '2', '3 fizz', '4', '5 buzz', '6 fizz', '7', '8', '9 fizz', '10 buzz', '11', '12 fizz', '13', '14', '15 fizz buzz', '16', '17', '18 fizz', '19', '20 buzz']
+
+describe 'fibonacci', ->
+    it 'creates the infinite sequence', ->
+        fibo(0).take(7).should.eql [1, 1, 2, 3, 5, 8, 13]
             
 
 sieve = (s) ->
@@ -21,3 +25,9 @@ fizzbuzz = (max) ->
 	fives = stream.cycle ['', '', '', '', ' buzz']
 	concat = (arr) -> arr.join ''
 	stream.zip(naturals, threes, fives).map(concat).take(max)
+
+fibo = (n) ->
+    if n == 0 || n == 1
+        stream.create (-> 1), (-> fibo(n+1))
+    else
+        stream.create (-> fibo(n-1).first() + fibo(n-2).first()), (-> fibo(n+1))
