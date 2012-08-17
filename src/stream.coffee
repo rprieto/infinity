@@ -10,7 +10,7 @@ create = (h, t) ->
     tail: -> t()
          
     first: -> @take(1)[0]
-        
+    
     skip: (count) ->
         if count == 1
             t()
@@ -19,15 +19,15 @@ create = (h, t) ->
     
     take: (max) ->
         if max == 1
-            [@head()]
+            [h()]
         else
-            [@head()].concat (t().take (max-1))
+            [h()].concat (t().take (max-1))
 
     filter: (test) ->
-        if test @head()
+        if test h()
             create h, -> t().filter test
         else
-            create (-> t().first()), (-> t().skip(1).filter test)
+            t().filter test
         
     map: (transform) ->
         create (-> transform h()), (-> t().map transform)
@@ -51,6 +51,10 @@ zip = (streams...) ->
     tails = streams.reduce ((acc, item) -> acc.concat item.tail()), []
     create (-> heads), (-> zip.apply null, tails)
 
+iterate = (fn, seed) ->
+    val = fn seed
+    create (-> val), (-> iterate fn, val)
+
 
 #
 # node module exports
@@ -61,3 +65,4 @@ exports.range = range
 exports.fromArray = fromArray
 exports.cycle = cycle
 exports.zip = zip
+exports.iterate = iterate

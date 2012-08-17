@@ -14,18 +14,29 @@ describe 'stream', ->
 
     it 'can skip items', ->
         stream.range(1).skip(3).take(2).should.eql [4, 5]
+        stream.range(1).skip(3).skip(4).take(2).should.eql [8, 9]
 
     it 'can create a stream from an array', ->
         stream.fromArray([2, 5, 7, 9]).take(4).should.eql [2, 5, 7, 9]
 
     it 'can filter a stream with a predicate', ->
-        isEven = (i) -> i%2 == 0
-        stream.range(1).filter(isEven).take(3).should.eql [2, 4, 6]
-        stream.range(9).filter(isEven).take(2).should.eql [10, 12]
+        divBy2 = (i) -> i % 2 == 0
+        divBy3 = (i) -> i % 3 == 0
+        stream.range(1).filter(divBy2).take(4).should.eql [2, 4, 6, 8]
+        stream.range(9).filter(divBy3).take(4).should.eql [9, 12, 15, 18]
+        
+    it 'can combine multiple filters', ->
+        divBy2 = (i) -> i % 2 == 0
+        divBy3 = (i) -> i % 3 == 0
+        stream.range(1).filter(divBy2).filter(divBy3).take(3).should.eql [6, 12, 18]
 
     it 'can map items from the stream', ->
-        double = (i) -> i*2
+        double = (i) -> i * 2
         stream.range(1).map(double).take(4).should.eql [2, 4, 6, 8]
+
+    it 'can apply a function iteratively on a given seed', ->
+        stream.iterate(((i) -> i*2), 1).take(4).should.eql [2, 4, 8, 16]
+        stream.iterate(((i) -> i*i), 3).take(3).should.eql [9, 81, 6561]
 
     it 'can zip streams together', ->
         stream.zip(stream.range(0), stream.range(10)).take(3).should.eql [[0,10], [1,11], [2,12]]
