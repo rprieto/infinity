@@ -9,7 +9,7 @@ Supports typical array functions and more, all evaluated lazily.
 
     infinite.range 9                        # naturals from 9 to infinity
     infinite.cycle [1, 2, 3]                # repeats 1, 2, 3 forever
-    infinite.iterate 2, (i) -> i*2          # all powers of 2
+    infinite.iteration 2, (i) -> i*2        # all powers of 2
     infinite.zip s1, s2, s3                 # a steam pairing all stream arguments 1 to 1
 
     infinite.fromArray [3, 6, 8]            # this one is actually finite, but still lazy
