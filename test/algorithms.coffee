@@ -61,4 +61,4 @@ fibo = ->
     calc = (pair) ->
         [a, b] = pair
         [b, a + b]
-    infinite.iteration(calc, [0, 1]).map (pair) -> pair[1]
+    infinite.iteration([0, 1], calc).map (pair) -> pair[1]

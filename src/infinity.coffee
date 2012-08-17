@@ -51,9 +51,9 @@ zip = (streams...) ->
     tails = streams.reduce ((acc, item) -> acc.concat item.tail()), []
     stream (-> heads), (-> zip.apply null, tails)
 
-iteration = (fn, seed) ->
+iteration = (seed, fn) ->
     val = fn seed
-    stream (-> val), (-> iteration fn, val)
+    stream (-> val), (-> iteration val, fn)
 
 
 #

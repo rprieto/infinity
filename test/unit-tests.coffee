@@ -35,8 +35,8 @@ describe 'infinity', ->
         infinite.range(1).map(double).take(4).should.eql [2, 4, 6, 8]
 
     it 'can apply a function iteratively on a given seed', ->
-        infinite.iteration(((i) -> i*2), 1).take(4).should.eql [2, 4, 8, 16]
-        infinite.iteration(((i) -> i*i), 3).take(3).should.eql [9, 81, 6561]
+        infinite.iteration(1, (i) -> i*2).take(4).should.eql [2, 4, 8, 16]
+        infinite.iteration(3, (i) -> i*i).take(3).should.eql [9, 81, 6561]
 
     it 'can zip streams together', ->
         infinite.zip(infinite.range(0), infinite.range(10)).take(3).should.eql [[0,10], [1,11], [2,12]]
