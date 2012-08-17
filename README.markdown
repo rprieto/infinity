@@ -35,3 +35,5 @@ A library for lazy evaluation in Node.js, with support for infinite sequences.
     # lots of prime numbers!
 
 ## See the unit tests for more examples...
+
+Ex: a functional "FizzBuzz" that doesn't use modulo or division, and a prime-number generator.

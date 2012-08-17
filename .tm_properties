@@ -1,3 +1,6 @@
+exclude = '{$exclude,node_modules}'
+include = '{$include,.gitignore}'
+
 softWrap = true  
 tabSize = 4  
 softTabs = true
