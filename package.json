@@ -2,7 +2,7 @@
 	"name": "infinity",
 	"version": "0.0.2",
 	"private": false,
-	"description": "Infinite sequence library with typical array functions and more, and full lazy-evaluation",
+	"description": "Infinite sequences for Node.js. Supports typical array functions and more, all evaluated lazily.",
 	"homepage": "",
 	"keywords": ["sequence", "stream", "functional", "infinite", "filter", "range"],
 	"author": "",
