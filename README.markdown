@@ -4,6 +4,18 @@ Infinite sequences for Node.js
 
 Supports typical array functions and more, all evaluated lazily.
 
+## Getting started
+
+In your package.json, add the "infinity" module.
+Then run
+    
+    >  npm install
+
+And you're good to go, either in Javascript or CoffeeScript:
+    
+    infinite = require 'infinity'
+    myStream = infinite.range 1
+
 ## Creating an infinite stream
 
     infinite = require 'infinity'
@@ -53,19 +65,6 @@ For example, the following is an infinite sequence of prime numbers:
     console.log prime().take(50)
     console.log prime().filter( (i) -> i > 1000 ).take(5)
 
-
-## Getting started
-
-In your package.json, add the "infinity" module.
-Then run
-    
-    >  npm install
-
-And you're good to go, either in Javascript or CoffeeScript:
-    
-    infinite = require 'infinity'
-    myStream = infinite.range 1
-    
     
 ## More examples?
 
