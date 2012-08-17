@@ -25,9 +25,36 @@ Supports typical array functions and more, all evaluated lazily.
     myStream.skip 2                       # a new stream that starts 2 elements further
     myStream.take 5                       # get the first 5 elements as a javascript array
 
-    These can of course be chained
+These can of course be chained.
 
-## How to use it
+## Custom streams
+
+The basic generators (range, cycle) are not always enough.... but chances are you can express your stream as a *head* and a *tail*.
+
+* The *head* is a function that returns a value.
+* The *tail* is a stream itself
+
+For example the following sequence outputs every second item it's given, lazily:
+
+    skipper = (s) -> infinite.stream (-> s.first()), (-> skipper s.tail().skip(1))
+
+    twentyAndAbove = infinite.range(1).skip 20
+    console.log skipper(twentyAndAbove).take 10
+
+This can be used to implement intersting algorithms.
+For example, the following is an infinite sequence of prime numbers:
+
+    prime = ->
+        sieve = (s) ->
+            h = s.head()
+            infinite.stream (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
+        sieve(infinite.range 2)
+
+    console.log prime().take(50)
+    console.log prime().filter( (i) -> i > 1000 ).take(5)
+
+
+## Getting started
 
 In your package.json, add the "infinity" module.
 Then run
