@@ -4,6 +4,10 @@ Infinite sequences for Node.js
 
 Supports typical array functions and more, all evaluated lazily.
 
+# Contributors
+
+Joint effort of Andrew Jones, [Maxim Filimonov](https://github.com/Maxim-Filimonov) and myself, during a _ThoughtWorks_ Node.js hach night.
+
 ## Getting started
 
 In your package.json, add the "infinity" module.
