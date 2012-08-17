@@ -1,6 +1,7 @@
 # infinity.js
 
 Infinite sequences for Node.js
+
 Supports typical array functions and more, all evaluated lazily.
 
 ## Creating an infinite stream
