@@ -12,6 +12,9 @@ describe 'stream', ->
         stream.range(1).take(3).should.eql [1, 2, 3]
         stream.range(5).take(3).should.eql [5, 6, 7]
 
+    it 'can skip items', ->
+        stream.range(1).skip(3).take(2).should.eql [4, 5]
+
     it 'can create a stream from an array', ->
         stream.fromArray([2, 5, 7, 9]).take(4).should.eql [2, 5, 7, 9]
 
