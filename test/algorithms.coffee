@@ -13,7 +13,6 @@ describe 'fizzbuzz', ->
 describe 'fibonacci', ->
     it 'creates the infinite sequence', ->
         fibo(0).take(7).should.eql [1, 1, 2, 3, 5, 8, 13]
-            
 
 sieve = (s) ->
     h = s.head()
@@ -27,7 +26,11 @@ fizzbuzz = (max) ->
 	stream.zip(naturals, threes, fives).map(concat).take(max)
 
 fibo = (n) ->
-    if n == 0 || n == 1
-        stream.create (-> 1), (-> fibo(n+1))
-    else
-        stream.create (-> fibo(n-1).first() + fibo(n-2).first()), (-> fibo(n+1))
+    stream.create ( ->
+        if n == 0 || n == 1
+            1
+        else
+            fibo(n-1).first() + fibo(n-2).first() 
+    ), ( ->
+        fibo n+1
+    )
