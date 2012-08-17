@@ -6,7 +6,7 @@ Supports typical array functions and more, all evaluated lazily.
 
 # Contributors
 
-Joint effort of [Andrew Jones](https://github.com/akjones), [Maxim Filimonov](https://github.com/Maxim-Filimonov) and [Romain Prieto](https://github.com/rprieto), during a _ThoughtWorks_ Node.js hach night.
+Joint effort of [Andrew Jones](https://github.com/akjones), [Maxim Filimonov](https://github.com/Maxim-Filimonov), [Leonardo Borges](https://github.com/leonardoborges) and [Romain Prieto](https://github.com/rprieto), during a _ThoughtWorks_ Node.js hach night.
 
 ## Getting started
 
