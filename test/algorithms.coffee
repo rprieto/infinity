@@ -38,6 +38,11 @@ describe 'fibonacci', ->
         fourDigits = (i) -> ('' + i).length is 4
         fibo().filter(fourDigits).first().should.eql 1597
 
+describe 'project euler, problem #2', ->
+    it 'returns the sum of all even fibonacci numbers under 4000000', ->
+        even = (i) -> i % 2 == 0
+        fibo().filter(even).takeWhile((i) -> i < 4000000).reduce(0, (acc,i) -> acc + i).should.eql 4613732
+
 
 
 #

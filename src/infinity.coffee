@@ -18,10 +18,24 @@ stream = (h, t) ->
             t().skip count - 1
     
     take: (max) ->
-        if max == 1
+        theTail = t()
+        if max == 1 || !theTail
             [h()]
         else
             [h()].concat (t().take (max-1))
+
+    takeWhile: (test) ->
+        if test h()
+            stream h, -> t().takeWhile test
+        else
+            undefined
+
+    reduce: (seed, f) ->
+        theHead = h()
+        if theHead && theTail = t()
+            t().reduce(f(seed, h()), f)
+        else
+            f(seed, theHead)
 
     filter: (test) ->
         if test h()

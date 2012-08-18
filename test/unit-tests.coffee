@@ -44,3 +44,8 @@ describe 'infinity', ->
     it 'can create a stream cycling through an array', ->
         infinite.cycle([2, 5, 7]).take(8).should.eql [2, 5, 7, 2, 5, 7, 2, 5]
         infinite.cycle(['a', 'b', 'c']).take(4).should.eql ['a', 'b', 'c', 'a']
+
+    it 'lazily takes elements of a stream based on a predicate', ->
+        infinite.range(1).takeWhile((i) -> i < 10).take(8).should.eql [1,2,3,4,5,6,7,8]
+        infinite.range(1).takeWhile((i) -> i < 10).take(20).should.eql [1,2,3,4,5,6,7,8,9]
+        infinite.range(1).takeWhile((i) -> i < 1000).reduce(0, ((acc,i) -> acc + i)).should.eql 499500
