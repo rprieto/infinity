@@ -1,3 +1,8 @@
+#
+# These are not intended to be optimal algorithms (many Euler problems can be solved with faster mathematical formulas)
+# Instead this is just a demo of the type of operations we can do with infinite streams
+#
+
 _ = require 'underscore'
 should = require 'should'
 infinite = require '../src/infinity'
@@ -15,7 +20,7 @@ describe 'project euler', ->
 
     it 'problem 7', ->
         # 10001st prime? takes too long
-        prime().skip(1001).first().should.eql 7933
+        prime().skip(1000).first().should.eql 7927
 
     it 'problem 10', ->
         # under 2 million? takes too long
