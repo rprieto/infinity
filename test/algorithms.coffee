@@ -1,48 +1,44 @@
 should = require 'should'
 infinite = require '../src/infinity'
-		
-describe 'prime numbers', ->
+
+describe 'some typical algorithms', ->
     
-    it 'can enumerate them all', ->
-        prime().take(5).should.eql [2, 3, 5, 7, 11]
-
-    it 'can find the first prime above 1000 and double it', ->
-        above = (i) -> i > 1000
-        double = (i) -> i * 2
-        prime().filter(above).map(double).first().should.eql 2018
-
-
-describe 'fizzbuzz', ->
-
-    it 'can count to twenty', ->
-        fizzbuzz().take(20).should.eql ['1', '2', '3 fizz', '4', '5 buzz', '6 fizz', '7', '8', '9 fizz', '10 buzz', '11', '12 fizz', '13', '14', '15 fizz buzz', '16', '17', '18 fizz', '19', '20 buzz']
-
-    it 'can print only fizzes', ->
-        hasFizz = (str) -> str.indexOf('fizz') isnt -1
-        fizzbuzz().filter(hasFizz).take(3).should.eql ['3 fizz', '6 fizz', '9 fizz']
-
-
-describe 'fibonacci', ->
+    describe 'prime numbers', ->
     
-    it 'creates the infinite sequence', ->
-        fibo().take(7).should.eql [1, 2, 3, 5, 8, 13, 21]
+        it 'can enumerate them all', ->
+            prime().take(5).should.eql [2, 3, 5, 7, 11]
 
-    it 'can skip the first 5 numbers', ->
-        fibo().skip(5).take(3).should.eql [13, 21, 34]
+        it 'can find the first prime above 1000 and double it', ->
+            above = (i) -> i > 1000
+            double = (i) -> i * 2
+            prime().filter(above).map(double).first().should.eql 2018
+
+
+    describe 'fizzbuzz', ->
+
+        it 'can count to twenty', ->
+            fizzbuzz().take(20).should.eql ['1', '2', '3 fizz', '4', '5 buzz', '6 fizz', '7', '8', '9 fizz', '10 buzz', '11', '12 fizz', '13', '14', '15 fizz buzz', '16', '17', '18 fizz', '19', '20 buzz']
+
+        it 'can print only fizzes', ->
+            hasFizz = (str) -> str.indexOf('fizz') isnt -1
+            fizzbuzz().filter(hasFizz).take(3).should.eql ['3 fizz', '6 fizz', '9 fizz']
+
+
+    describe 'fibonacci', ->
     
-    it 'can return only even fibonacci numbers', ->
-        even = (i) -> i % 2 == 0
-        fibo().filter(even).take(5).should.eql [2, 8, 34, 144, 610]
+        it 'creates the infinite sequence', ->
+            fibo().take(7).should.eql [1, 2, 3, 5, 8, 13, 21]
+
+        it 'can skip the first 5 numbers', ->
+            fibo().skip(5).take(3).should.eql [13, 21, 34]
     
-    it 'can find the first term with 4 digits', ->
-        fourDigits = (i) -> ('' + i).length is 4
-        fibo().filter(fourDigits).first().should.eql 1597
-
-describe 'project euler, problem #2', ->
-    it 'returns the sum of all even fibonacci numbers under 4000000', ->
-        even = (i) -> i % 2 == 0
-        fibo().filter(even).takeWhile((i) -> i < 4000000).reduce(0, (acc,i) -> acc + i).should.eql 4613732
-
+        it 'can return only even fibonacci numbers', ->
+            even = (i) -> i % 2 == 0
+            fibo().filter(even).take(5).should.eql [2, 8, 34, 144, 610]
+    
+        it 'can find the first term with 4 digits', ->
+            fourDigits = (i) -> ('' + i).length is 4
+            fibo().filter(fourDigits).first().should.eql 1597
 
 
 #
