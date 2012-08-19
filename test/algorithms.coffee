@@ -35,10 +35,6 @@ describe 'some typical algorithms', ->
         it 'can return only even fibonacci numbers', ->
             even = (i) -> i % 2 == 0
             fibo().filter(even).take(5).should.eql [2, 8, 34, 144, 610]
-    
-        it 'can find the first term with 4 digits', ->
-            fourDigits = (i) -> ('' + i).length is 4
-            fibo().filter(fourDigits).first().should.eql 1597
 
 
 #
