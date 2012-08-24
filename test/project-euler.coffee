@@ -9,8 +9,13 @@ infinite = require '../src/infinity'
 
 describe 'project euler', ->
     
-    it 'problem 1', ->
-        infinite.range(1).filter(divBy 3).filter(divBy 5).takeWhile(lessThan 1000).reduce(0, sum).should.eql 33165
+    it 'problem 1 in O(n)', ->
+        divBy3or5 = (i) -> (i % 3 == 0) || (i % 5 == 0)
+        infinite.range(1).filter(divBy3or5).takeWhile(lessThan 1000).reduce(0, sum).should.eql 233168
+    
+    it 'problem 1 in O(1)', ->
+        sumMultiples = (k,n) -> k * sigma Math.floor (n-1) / k
+        (sumMultiples(3,1000) + sumMultiples(5,1000) - sumMultiples(15,1000)).should.eql 233168
     
     it 'problem 2', ->
         fibo().filter(divBy 2).takeWhile(lessThan 4000000).reduce(0, sum).should.eql 4613732
@@ -39,6 +44,8 @@ divBy = (x) -> ((i) -> i % x == 0)
 lessThan = (x) -> ((i) -> i < x)
 
 sum = (acc,i) -> acc + i
+
+sigma = (n) -> n * (n+1) / 2
 
 fibo = ->
     calc = (pair) ->
