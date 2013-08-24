@@ -6,11 +6,9 @@
 
 [![NPM version](https://badge.fury.io/js/infinity.png)](https://npmjs.org/package/infinity)
 
-# Contributors
-
 Joint effort of [Andrew Jones](https://github.com/akjones), [Maxim Filimonov](https://github.com/Maxim-Filimonov), [Leonardo Borges](https://github.com/leonardoborges) and [Romain Prieto](https://github.com/rprieto), during a _ThoughtWorks_ Node.js hack night.
 
-## Creating a stream
+# Generators
 
 ```coffee
 infinite = require 'infinity'
@@ -25,7 +23,9 @@ infinite.primes()                       # sequence of prime numbers
 infinite.fibonacci()                    # fibonacci sequence
 ```
 
-## Stream operations
+# Operations
+
+These operations create a new lazy stream:
 
 ```coffee
 stream = infinite.range 1
@@ -33,12 +33,22 @@ stream = infinite.range 1
 stream.filter (i) -> i%2 == 0       # a new stream with even numbers only
 stream.map (i) -> i*2               # a new stream with all elements doubled
 stream.skip 2                       # a new stream that starts 2 elements further
-stream.take 5                       # get the first 5 elements as a javascript array
+stream.takeWhile (i) -> i < 5       # a finite stream that stops at the given condition
 ```
 
-These can of course be chained.
+And these ones resolve a stream (non lazy):
 
-## Example
+```coffee
+# get the first 5 elements as a javascript array
+stream.take 5
+
+# reduce the stream to a single value
+# can only be called on a finite stream (after takeWhile)
+sum = (acc, i) -> acc + i
+stream.reduce 0, sum
+```
+
+# Example
 
 FizzBuzz that doesn't use loops or modulo:
 
@@ -50,7 +60,7 @@ concat   = (arr) -> arr.join ''
 infinite.zip(naturals, threes, fives).map(concat).take(20)
 ```
 
-## Custom streams
+# Custom streams
 
 The basic generators (range, cycle) are not always enough.... but chances are you can express your stream as a *head* and a *tail*.
 
@@ -83,7 +93,7 @@ infinite.primes().filter( (i) -> i > 1000 ).take 5
 # [ 1009, 1013, 1019, 1021, 1031 ]
 ````
 
-## Curious about the code?
+# Curious about the code?
 
 Go to the folder you just cloned:
 

@@ -34,6 +34,15 @@ describe 'infinity', ->
         double = (i) -> i * 2
         infinite.range(1).map(double).take(4).should.eql [2, 4, 6, 8]
 
+    it 'can create a finite stream given a final predicate', ->
+        lessThan5 = (i) -> i < 5
+        infinite.range(1).takeWhile(lessThan5).take(10).should.eql [1, 2, 3, 4]
+
+    it 'can reduce a finite stream to a single value', ->
+        lessThan5 = (i) -> i < 5
+        sum = (acc, i) -> acc + i
+        infinite.range(1).takeWhile(lessThan5).reduce(0, sum).should.eql 10
+
     it 'can apply a function iteratively on a given seed', ->
         infinite.iteration(1, (i) -> i*2).take(4).should.eql [2, 4, 8, 16]
         infinite.iteration(3, (i) -> i*i).take(3).should.eql [9, 81, 6561]
