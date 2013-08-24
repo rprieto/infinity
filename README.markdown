@@ -18,7 +18,8 @@ infinite = require 'infinity'
 infinite.range 9                        # naturals from 9 to infinity
 infinite.cycle [1, 2, 3]                # repeats 1, 2, 3 forever
 infinite.iteration 2, (i) -> i*2        # all powers of 2
-infinite.zip s1, s2, s3                 # a steam pairing all stream arguments 1 to 1
+infinite.zip s1, s2, s3                 # a steam pairing all given streams 1 to 1
+infinite.cons 99, 98, stream            # a new stream starting with the given fixed values
 infinite.fromArray [3, 6, 8]            # this one is actually finite, but still lazy
 ```
 

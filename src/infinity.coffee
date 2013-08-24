@@ -69,6 +69,9 @@ iteration = (seed, fn) ->
     val = fn seed
     stream (-> val), (-> iteration val, fn)
 
+cons = (values..., otherStream) ->
+    red = (acc, val) -> stream (-> val), (-> acc)
+    values.reverse().reduce red, otherStream
 
 #
 # node module exports
@@ -80,3 +83,4 @@ exports.fromArray = fromArray
 exports.cycle = cycle
 exports.zip = zip
 exports.iteration = iteration
+exports.cons = cons

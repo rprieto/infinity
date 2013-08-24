@@ -49,3 +49,9 @@ describe 'infinity', ->
         infinite.range(1).takeWhile((i) -> i < 10).take(8).should.eql [1,2,3,4,5,6,7,8]
         infinite.range(1).takeWhile((i) -> i < 10).take(20).should.eql [1,2,3,4,5,6,7,8,9]
         infinite.range(1).takeWhile((i) -> i < 1000).reduce(0, ((acc,i) -> acc + i)).should.eql 499500
+
+    it 'can prepend a fixed values to a stream', ->
+        infinite.cons(99, infinite.range(1)).take(6).should.eql [99, 1, 2, 3, 4, 5]
+
+    it 'can prepend multiple fixed values to a stream', ->
+        infinite.cons(99, 88, 77, infinite.range(1)).take(6).should.eql [99, 88, 77, 1, 2, 3]
