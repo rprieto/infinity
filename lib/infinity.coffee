@@ -51,8 +51,8 @@ stream = (h, t) ->
 # utility methods
 #
 
-range = (start) -> 
-    stream (-> start), (-> range start+1)
+range = (start, increment = 1) -> 
+    stream (-> start), (-> range start + increment, increment)
 
 fromArray = (arr) ->
     stream (-> arr[0]), (-> fromArray arr.slice 1)
