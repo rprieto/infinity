@@ -1,6 +1,6 @@
 {
   "name": "infinity",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "description": "Infinite sequences for Node.js. Supports typical array functions and more, all evaluated lazily.",
   "homepage": "",
