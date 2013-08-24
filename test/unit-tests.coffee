@@ -55,3 +55,9 @@ describe 'infinity', ->
 
     it 'can prepend multiple fixed values to a stream', ->
         infinite.cons(99, 88, 77, infinite.range(1)).take(6).should.eql [99, 88, 77, 1, 2, 3]
+
+    it 'can generate a sequence of all primes', ->
+        infinite.primes().take(10).should.eql [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+    it 'can generate a fibonacci sequence', ->
+        infinite.fibonacci().take(10).should.eql [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]

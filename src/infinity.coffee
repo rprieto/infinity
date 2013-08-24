@@ -73,6 +73,19 @@ cons = (values..., otherStream) ->
     red = (acc, val) -> stream (-> val), (-> acc)
     values.reverse().reduce red, otherStream
 
+primes = ->
+    sieve = (s) ->
+        h = s.head()
+        stream (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
+    sieve(range 2)
+
+fibonacci = ->
+    calc = (pair) ->
+        [a, b] = pair
+        [b, a + b]
+    secondTerm = (pair) -> pair[1]
+    cons 0, 1, iteration([0, 1], calc).map(secondTerm)
+
 #
 # node module exports
 #
@@ -84,3 +97,5 @@ exports.cycle = cycle
 exports.zip = zip
 exports.iteration = iteration
 exports.cons = cons
+exports.primes = primes
+exports.fibonacci = fibonacci

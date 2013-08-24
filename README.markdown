@@ -21,6 +21,8 @@ infinite.iteration 2, (i) -> i*2        # all powers of 2
 infinite.zip s1, s2, s3                 # a steam pairing all given streams 1 to 1
 infinite.cons 99, 98, stream            # a new stream starting with the given fixed values
 infinite.fromArray [3, 6, 8]            # this one is actually finite, but still lazy
+infinite.primes()                       # sequence of prime numbers
+infinite.fibonacci()                    # fibonacci sequence
 ```
 
 ## Stream operations
@@ -65,20 +67,17 @@ console.log skipper(twentyAndAbove).take 10
 ```
 
 This can be used to implement intersting algorithms.
-For example, the following is an infinite sequence of prime numbers:
+For example, here's the implementation of `infinite.primes()`:
 
 ```coffee
-prime = ->
+primes = ->
     sieve = (s) ->
         h = s.head()
         infinite.stream (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
     sieve(infinite.range 2)
 
-# First 50 primes
-console.log prime().take(50)
-
-# First 5 primes over 1000
-console.log prime().filter( (i) -> i > 1000 ).take(5)
+console.log infinite.primes().take(20)
+console.log infinite.primes().filter( (i) -> i > 1000 ).take(5)
 ````
 
 ## Curious about the code?
