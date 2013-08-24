@@ -28,12 +28,12 @@ infinite.fibonacci()                    # fibonacci sequence
 ## Stream operations
 
 ```coffee
-myStream = infinite.range 1
+stream = infinite.range 1
 
-myStream.filter (i) -> i%2 == 0       # a new stream with even numbers only
-myStream.map (i) -> i*2               # a new stream with all elements doubled
-myStream.skip 2                       # a new stream that starts 2 elements further
-myStream.take 5                       # get the first 5 elements as a javascript array
+stream.filter (i) -> i%2 == 0       # a new stream with even numbers only
+stream.map (i) -> i*2               # a new stream with all elements doubled
+stream.skip 2                       # a new stream that starts 2 elements further
+stream.take 5                       # get the first 5 elements as a javascript array
 ```
 
 These can of course be chained.
@@ -62,11 +62,11 @@ For example the following sequence outputs every second item it's given, lazily:
 ```coffee
 skipper = (s) -> infinite.stream (-> s.first()), (-> skipper s.tail().skip(1))
 
-twentyAndAbove = infinite.range(1).skip 20
-console.log skipper(twentyAndAbove).take 10
+skipper(infinite.fibonacci()).take 5
+# [ 0, 1, 3, 8, 21 ]
 ```
 
-This can be used to implement intersting algorithms.
+This can be used to implement interesting algorithms.
 For example, here's the implementation of `infinite.primes()`:
 
 ```coffee
@@ -76,8 +76,11 @@ primes = ->
         infinite.stream (-> h), (-> sieve s.tail().filter (x) -> x % h isnt 0)
     sieve(infinite.range 2)
 
-console.log infinite.primes().take(20)
-console.log infinite.primes().filter( (i) -> i > 1000 ).take(5)
+infinite.primes().take 5
+# [ 2, 3, 5, 7, 11 ]
+
+infinite.primes().filter( (i) -> i > 1000 ).take 5
+# [ 1009, 1013, 1019, 1021, 1031 ]
 ````
 
 ## Curious about the code?
