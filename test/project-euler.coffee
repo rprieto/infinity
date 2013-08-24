@@ -5,7 +5,7 @@
 
 _ = require 'underscore'
 should = require 'should'
-infinite = require '../src/infinity'
+infinite = require '../lib/infinity'
 
 describe 'project euler', ->
     

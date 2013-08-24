@@ -1,5 +1,5 @@
 should = require 'should'
-infinite = require '../src/infinity'
+infinite = require '../lib/infinity'
 
 describe 'some typical algorithms', ->
     
