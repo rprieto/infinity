@@ -82,20 +82,10 @@ console.log infinite.primes().filter( (i) -> i > 1000 ).take(5)
 
 ## Curious about the code?
 
-Go to the folder you just cloned
+Go to the folder you just cloned:
 
 ```shell  
 npm install
 npm install -g mocha
 mocha
 ```
-
-All the tests should pass!
-  
-```shell
-coffee src/main.coffee
-```
-
-This should output a lot of prime numbers.
-Check out the `test` folder for a few typical algorithms implemented with *infinity*.
-
