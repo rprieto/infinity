@@ -11,6 +11,10 @@ describe 'infinity', ->
         infinite.range(1).take(1).should.eql [1]
         infinite.range(1).take(3).should.eql [1, 2, 3]
         infinite.range(5).take(3).should.eql [5, 6, 7]
+    
+    it 'create a natural range incrementing both up and down', ->
+    	infinite.range(1, 1).take(3).should.eql [1, 2, 3]
+    	infinite.range(3, -1).take(3).should.eql [3, 2, 1]
 
     it 'can skip items', ->
         infinite.range(1).skip(3).take(2).should.eql [4, 5]
