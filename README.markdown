@@ -86,6 +86,5 @@ Go to the folder you just cloned:
 
 ```shell  
 npm install
-npm install -g mocha
-mocha
+npm test
 ```
